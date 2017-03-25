@@ -3,7 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_Utilities", "__Build_Utilities", "{7AC4D197-535A-4686-8E21-18257B2ADB3A}"
 	ProjectSection(SolutionItems) = preProject
-		..\InstallGems.bat = ..\InstallGems.bat
 		..\rakefile.rb = ..\rakefile.rb
 	EndProjectSection
 EndProject
@@ -12,8 +11,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuLocalization.Tests", "FubuLocalization.Tests\FubuLocalization.Tests.csproj", "{AFD1AFE7-0B3E-4087-ABF8-73B7E212D320}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "localizer", "localizer\localizer.csproj", "{13AC0846-4C06-4E5F-AB6B-6997CA5C578D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuLocalization.Docs", "FubuLocalization.Docs\FubuLocalization.Docs.csproj", "{670A2FCD-BB1E-45AE-B9D7-46478F449563}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,21 +68,6 @@ Global
 		{13AC0846-4C06-4E5F-AB6B-6997CA5C578D}.Retail|Mixed Platforms.Build.0 = Release|x86
 		{13AC0846-4C06-4E5F-AB6B-6997CA5C578D}.Retail|x86.ActiveCfg = Release|x86
 		{13AC0846-4C06-4E5F-AB6B-6997CA5C578D}.Retail|x86.Build.0 = Release|x86
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Release|Any CPU.Build.0 = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Release|x86.ActiveCfg = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Retail|Any CPU.ActiveCfg = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Retail|Any CPU.Build.0 = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Retail|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Retail|Mixed Platforms.Build.0 = Release|Any CPU
-		{670A2FCD-BB1E-45AE-B9D7-46478F449563}.Retail|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
