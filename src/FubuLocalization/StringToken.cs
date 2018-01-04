@@ -98,9 +98,14 @@ namespace FubuLocalization
         [Obsolete("***Token.ToString calls to DefaultLocalizationManager are no longer valid.")]
         public string ToString(bool condition)
         {
-            return condition 
-                ? throw new InvalidOperationException("StringToken.ToString() is deprecated.")
-                : string.Empty;
+            if (condition)
+            {
+                throw new InvalidOperationException("StringToken.ToString() is deprecated.");
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         public string ToFormat(params object[] args)
