@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FubuTestingSupport;
 using NUnit.Framework;
@@ -99,26 +100,12 @@ namespace FubuLocalization.Tests
         }
 
         [Test]
-        public void should_render_to_string_from_localization_when_condition_is_true()
+        public void should_throw_exception_when_condition_is_true()
         {
-            var mocks = new MockRepository();
-            var provider = mocks.StrictMock<ILocalizationDataProvider>();
             var token = buildCommonToken();
-            const string retVal = "TheText";
 
-            LocalizationManager.Stub(provider);
+            typeof(InvalidOperationException).ShouldBeThrownBy(() => token.ToString(true));
 
-            using (mocks.Record())
-            {
-                Expect.Call(provider.GetTextForKey(token)).Return(retVal);
-            }
-
-            using (mocks.Playback())
-            {
-                token
-                    .ToString(true)
-                    .ShouldEqual(retVal);
-            }
         }
 
         [Test]
@@ -130,25 +117,10 @@ namespace FubuLocalization.Tests
         }
 
         [Test]
-        public void should_implicitly_convert_to_string()
+        public void should_throw_exception_when_tostring_is_called()
         {
-            var mocks = new MockRepository();
-            var provider = mocks.StrictMock<ILocalizationDataProvider>();
             var token = buildCommonToken();
-            const string retVal = "TheText";
-
-            LocalizationManager.Stub(provider);
-
-            using (mocks.Record())
-            {
-                Expect.Call(provider.GetTextForKey(token)).Return(retVal);
-            }
-
-            using (mocks.Playback())
-            {
-                string result = token;
-                result.ShouldEqual(retVal);
-            }
+            typeof(InvalidOperationException).ShouldBeThrownBy(() => token.ToString());
         }
 
         private StringToken buildCommonToken()

@@ -17,8 +17,5 @@
   </metadata>
   <files>
     <file src="..\..\src\FubuLocalization\bin\Release\FubuLocalization.*" target="lib" />
-    <file src="..\..\src\localizer\bin\Release\FubuLocalization.*" target="tools" />
-    <file src="..\..\src\localizer\bin\Release\FubuCore.*" target="tools" />
-    <file src="..\..\src\localizer\bin\Release\localizer.*" target="tools" />
   </files>
 </package>

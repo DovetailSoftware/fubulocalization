@@ -97,9 +97,10 @@ namespace FubuLocalization
             }
         }
 
+        [Obsolete("***Token.ToString calls to DefaultLocalizationManager are no longer valid.")]
         public override string ToString()
         {
-            return LocalizationManager.GetHeader(this);
+            throw new InvalidOperationException("PropertyToken.ToString() is deprecated.");
         }
 
         public string FindDefaultHeader(CultureInfo culture)

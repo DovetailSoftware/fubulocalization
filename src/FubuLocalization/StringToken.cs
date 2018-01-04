@@ -84,6 +84,7 @@ namespace FubuLocalization
             return new StringToken(type.Name, type.Name);
         }
 
+        [Obsolete("***Token.ToString calls to DefaultLocalizationManager are no longer valid.")]
         public override string ToString()
         {
             return ToString(true);
@@ -94,9 +95,12 @@ namespace FubuLocalization
         /// </summary>
         /// <param name = "condition"></param>
         /// <returns></returns>
+        [Obsolete("***Token.ToString calls to DefaultLocalizationManager are no longer valid.")]
         public string ToString(bool condition)
         {
-            return condition ? LocalizationManager.GetTextForKey(this) : string.Empty;
+            return condition 
+                ? throw new InvalidOperationException("StringToken.ToString() is deprecated.")
+                : string.Empty;
         }
 
         public string ToFormat(params object[] args)
