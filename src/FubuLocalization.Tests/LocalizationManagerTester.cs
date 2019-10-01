@@ -1,3 +1,4 @@
+using System.Reflection;
 using FubuCore.Reflection;
 using FubuTestingSupport;
 using NUnit.Framework;
@@ -6,24 +7,30 @@ using Rhino.Mocks;
 namespace FubuLocalization.Tests
 {
     [TestFixture]
-    public class DefaultLocalizationManagerTester
+    public class LocalizationManagerTester
     {
         private MockRepository _mocks;
         private ILocalizationDataProvider _provider;
-        private DefaultLocalizationManager _manager;
 
         [SetUp]
         public void SetUp()
         {
             _mocks = new MockRepository();
             _provider = _mocks.StrictMock<ILocalizationDataProvider>();
-            _manager = new DefaultLocalizationManager(_provider);
+
+            LocalizationManager.Stub(_provider);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            LocalizationManager.Stub();
         }
 
         [Test]
         public void GetText_for_property()
         {
-            var property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
+            PropertyInfo property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
 
             using (_mocks.Record())
             {
@@ -32,14 +39,14 @@ namespace FubuLocalization.Tests
 
             using (_mocks.Playback())
             {
-                _manager.GetText(property).ShouldEqual("TheText");
+                LocalizationManager.GetText(property).ShouldEqual("TheText");
             }
         }
 
         [Test]
         public void GetText_for_property_by_expression()
         {
-            var property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
+            PropertyInfo property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
 
             using (_mocks.Record())
             {
@@ -48,14 +55,14 @@ namespace FubuLocalization.Tests
 
             using (_mocks.Playback())
             {
-                _manager.GetText<DummyEntity>(c => c.SimpleProperty).ShouldEqual("TheText");
+                LocalizationManager.GetText<DummyEntity>(c => c.SimpleProperty).ShouldEqual("TheText");
             }
         }
 
         [Test]
         public void GetHeader_for_property()
         {
-            var property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
+            PropertyInfo property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
             var theHeader = "TheText";
 
             using (_mocks.Record())
@@ -65,14 +72,14 @@ namespace FubuLocalization.Tests
 
             using (_mocks.Playback())
             {
-                _manager.GetHeader(property).ShouldEqual(theHeader);
+                LocalizationManager.GetHeader(property).ShouldEqual(theHeader);
             }
         }
 
         [Test]
         public void GetHeader_for_property_by_expression()
         {
-            var property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
+            PropertyInfo property = ReflectionHelper.GetProperty<DummyEntity>(c => c.SimpleProperty);
             var theHeader = "TheText";
 
             using (_mocks.Record())
@@ -82,7 +89,7 @@ namespace FubuLocalization.Tests
 
             using (_mocks.Playback())
             {
-                _manager.GetHeader<DummyEntity>(c => c.SimpleProperty).ShouldEqual(theHeader);
+                LocalizationManager.GetHeader<DummyEntity>(c => c.SimpleProperty).ShouldEqual(theHeader);
             }
         }
 
