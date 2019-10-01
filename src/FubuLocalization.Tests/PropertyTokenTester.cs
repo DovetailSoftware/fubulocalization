@@ -1,6 +1,7 @@
-using System.Globalization;
+using FubuCore.Reflection;
 using FubuTestingSupport;
 using NUnit.Framework;
+using System.Globalization;
 
 namespace FubuLocalization.Tests
 {
@@ -32,9 +33,26 @@ namespace FubuLocalization.Tests
 
             token.FindDefaultHeader(new CultureInfo("en-US")).ShouldBeNull();
         }
+
+        [Test]
+        public void generic_parent_type_is_pretty()
+        {
+            // Ensures we don't have assembly info when using generics.
+            var prop = ReflectionHelper.GetProperty<GenericPropertyTokenTarget<PropertyTokenTarget>>(_ => _.Name);
+            var token = new PropertyToken(prop);
+            token.ParentTypeName.ShouldEqual(prop.DeclaringType.ToString());
+        }
     }
 
     public class PropertyTokenTarget
+    {
+        [HeaderText("The Name"), HeaderText("Different", Culture = "en-CA")]
+        public string Name { get; set; }
+
+        public string NotDecorated { get; set; }
+    }
+
+    public class GenericPropertyTokenTarget<T>
     {
         [HeaderText("The Name"), HeaderText("Different", Culture = "en-CA")]
         public string Name { get; set; }
