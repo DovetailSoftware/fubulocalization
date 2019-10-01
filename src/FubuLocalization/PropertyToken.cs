@@ -50,7 +50,7 @@ namespace FubuLocalization
             });
 
             ParentType = property.DeclaringType;
-            ParentTypeName = property.DeclaringType.FullName;
+            ParentTypeName = property.DeclaringType.ToString();
             PropertyName = property.Name;
         }
 
