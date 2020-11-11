@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Threading;
 using FubuCore;
 using FubuLocalization.Basic;
-using FubuTestingSupport;
 using NUnit.Framework;
 
 namespace FubuLocalization.Tests.Basic

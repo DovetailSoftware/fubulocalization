@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using FubuCore.Reflection;
 using FubuLocalization.Basic;
 using NUnit.Framework;
-using FubuTestingSupport;
 
 namespace FubuLocalization.Tests.Basic
 {

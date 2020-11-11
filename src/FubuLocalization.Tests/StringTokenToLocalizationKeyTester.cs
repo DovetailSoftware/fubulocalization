@@ -1,6 +1,4 @@
-using System;
 using NUnit.Framework;
-using FubuTestingSupport;
 
 namespace FubuLocalization.Tests
 {

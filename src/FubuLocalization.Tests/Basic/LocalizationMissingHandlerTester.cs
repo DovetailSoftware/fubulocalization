@@ -3,9 +3,7 @@ using System.Globalization;
 using System.Linq.Expressions;
 using FubuCore.Reflection;
 using FubuLocalization.Basic;
-using FubuTestingSupport;
 using NUnit.Framework;
-using Rhino.Mocks;
 using FubuCore;
 
 namespace FubuLocalization.Tests.Basic
@@ -27,7 +25,7 @@ namespace FubuLocalization.Tests.Basic
             
             ClassUnderTest.FindMissingText(token, theDefaultCulture).ShouldEqual("the default text");
 
-            MockFor<ILocalizationStorage>().AssertWasCalled(x => x.WriteMissing("KEY1", "the default text", theDefaultCulture));
+            MockFor<ILocalizationStorage>().Verify(x => x.WriteMissing("KEY1", "the default text", theDefaultCulture));
         }
 
         [Test]
@@ -37,7 +35,7 @@ namespace FubuLocalization.Tests.Basic
 
             ClassUnderTest.FindMissingText(token, theDefaultCulture).ShouldEqual("en-US_KEY1");
 
-            MockFor<ILocalizationStorage>().AssertWasCalled(x => x.WriteMissing("KEY1", "en-US_KEY1", theDefaultCulture));
+            MockFor<ILocalizationStorage>().Verify(x => x.WriteMissing("KEY1", "en-US_KEY1", theDefaultCulture));
         }
 
         [Test]
@@ -49,7 +47,7 @@ namespace FubuLocalization.Tests.Basic
             ClassUnderTest.FindMissingText(token, cultureInfo)
                 .ShouldEqual("fr-FR_KEY1");
 
-            MockFor<ILocalizationStorage>().AssertWasCalled(x => x.WriteMissing("KEY1", "fr-FR_KEY1", cultureInfo));
+            MockFor<ILocalizationStorage>().Verify(x => x.WriteMissing("KEY1", "fr-FR_KEY1", cultureInfo));
         }
 
         [Test]
@@ -61,7 +59,7 @@ namespace FubuLocalization.Tests.Basic
             ClassUnderTest.FindMissingText(token, cultureInfo)
                 .ShouldEqual("fr-FR_FakeToken:KEY1");
 
-            MockFor<ILocalizationStorage>().AssertWasCalled(x => x.WriteMissing("FakeToken:KEY1", "fr-FR_FakeToken:KEY1", cultureInfo));
+            MockFor<ILocalizationStorage>().Verify(x => x.WriteMissing("FakeToken:KEY1", "fr-FR_FakeToken:KEY1", cultureInfo));
         }
 
         private string findMissingProperty(Expression<Func<MissingHandlerTarget, object>> expression, CultureInfo culture)
@@ -114,7 +112,7 @@ namespace FubuLocalization.Tests.Basic
 
             var key = "{0}:Name:Header".ToFormat(typeof (MissingHandlerTarget).FullName);
         
-            MockFor<ILocalizationStorage>().AssertWasCalled(x => x.WriteMissing(key, defaultValue, theDefaultCulture));
+            MockFor<ILocalizationStorage>().Verify(x => x.WriteMissing(key, defaultValue, theDefaultCulture));
         }
     }
 

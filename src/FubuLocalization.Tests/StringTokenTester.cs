@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using FubuTestingSupport;
+using Moq;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace FubuLocalization.Tests
 {
@@ -101,24 +100,17 @@ namespace FubuLocalization.Tests
         [Test]
         public void should_render_to_string_from_localization_when_condition_is_true()
         {
-            var mocks = new MockRepository();
-            var provider = mocks.StrictMock<ILocalizationDataProvider>();
+            var provider = new Mock<ILocalizationDataProvider>(MockBehavior.Strict);
             var token = buildCommonToken();
             const string retVal = "TheText";
 
-            LocalizationManager.Stub(provider);
+            LocalizationManager.Stub(provider.Object);
 
-            using (mocks.Record())
-            {
-                Expect.Call(provider.GetTextForKey(token)).Return(retVal);
-            }
+            provider.Setup(_ => _.GetTextForKey(token)).Returns(retVal);
 
-            using (mocks.Playback())
-            {
-                token
-                    .ToString(true)
-                    .ShouldEqual(retVal);
-            }
+            token
+                .ToString(true)
+                .ShouldEqual(retVal);
         }
 
         [Test]
@@ -132,23 +124,16 @@ namespace FubuLocalization.Tests
         [Test]
         public void should_implicitly_convert_to_string()
         {
-            var mocks = new MockRepository();
-            var provider = mocks.StrictMock<ILocalizationDataProvider>();
+            var provider = new Mock<ILocalizationDataProvider>(MockBehavior.Strict);
             var token = buildCommonToken();
             const string retVal = "TheText";
 
-            LocalizationManager.Stub(provider);
+            LocalizationManager.Stub(provider.Object);
 
-            using (mocks.Record())
-            {
-                Expect.Call(provider.GetTextForKey(token)).Return(retVal);
-            }
+            provider.Setup(_ => _.GetTextForKey(token)).Returns(retVal);
 
-            using (mocks.Playback())
-            {
-                string result = token;
-                result.ShouldEqual(retVal);
-            }
+            string result = token;
+            result.ShouldEqual(retVal);
         }
 
         private StringToken buildCommonToken()
