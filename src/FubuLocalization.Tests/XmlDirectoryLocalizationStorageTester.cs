@@ -1,13 +1,11 @@
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Xml;
 using FubuCore;
 using System.Collections.Generic;
 using FubuCore.Util;
 using FubuLocalization.Basic;
 using NUnit.Framework;
-using FubuTestingSupport;
 using System.Linq;
 using FubuCore.Configuration;
 
