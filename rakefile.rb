@@ -18,7 +18,7 @@ end
 
 desc 'Restore dependencies'
 task :restore do
-  restoreArgs = ENV['NUGET_SOURCES'].nil? ? '' : "--source #{ENV['NUGET_SOURCES']}"
+  restoreArgs = ENV['NUGET_SOURCES'].nil? ? '' : ENV['NUGET_SOURCES'].split(",").map { |source| "--source #{source}" }.join(" ")
   sh "dotnet restore src/FubuLocalization.sln #{restoreArgs}"
 end
 
