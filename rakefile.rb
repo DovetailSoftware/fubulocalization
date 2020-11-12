@@ -19,7 +19,7 @@ end
 desc 'Restore dependencies'
 task :restore do
   restoreArgs = ENV['NUGET_SOURCES'].nil? ? '' : ENV['NUGET_SOURCES'].split(",").map { |source| "--source #{source}" }.join(" ")
-  sh "dotnet restore src/FubuLocalization.sln #{restoreArgs}"
+  sh "dotnet restore src/FubuLocalization.sln #{restoreArgs} --interactive"
 end
 
 desc 'Run the unit tests'
